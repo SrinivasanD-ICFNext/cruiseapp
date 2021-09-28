@@ -1,0 +1,62 @@
+<div style="max-width:500px">
+  <div class="card mtx-10 mb-5">
+    <div class="card-header">Profile Data</div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input name="userFirstName" [(ngModel)]="globals.userFirstName" type="text" id="first_name" class="form-control" placeholder=""
+              required="required">
+            <label for="first_name">First Name</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input name="userLastName" [(ngModel)]="globals.userLastName" type="text" id="last_name" class="form-control" placeholder=""
+              required="required">
+            <label for="last_name">Last Name</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input name="userDOB" [(ngModel)]="globals.userDOB" type="text" id="user_dob" class="form-control" placeholder="" required="required">
+            <label for="user_dob">DOB</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input name="userAddress" [(ngModel)]="globals.userAddress" type="text" id="address" class="form-control" placeholder=""
+              required="required">
+            <label for="address">Address</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input name="userPassport" [(ngModel)]="globals.userPassport" type="text" id="passport_number" class="form-control" placeholder=""
+              required="required">
+            <label for="passport_number">Passport Number</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input name="userLicense" [(ngModel)]="globals.userLicense" type="text" id="license_number" class="form-control" placeholder=""
+              required="required">
+            <label for="license_number">License Number</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-6 col-sm-12 col-md-6 mbx-10" style="float:left">
+            <a routerLink="/ticket" style="color:white;" id="bookTicket" class="btn btn-primary btn-block" (click)="bookTicket()">
+                Book now
+              </a>
+          </div>
+          <div class="col-lg-6 col-sm-12 col-md-6  mbx-10" style="float:left">
+            <a routerLink="/welcome" style="color:white;" id="cancelProfile" class="btn btn-primary btn-block">
+              Cancel
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+<app-dashboard-head></app-dashboard-head>
+<div id="wrapper">
+  <!-- Sidebar -->
+  <ul class="sidebar navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/welcome">
+        <i class="fas fa-fw fa-home"></i>
+        <span>&nbsp;Home</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/scanner">
+        <i class="fas fa-fw fa-camera"></i>
+        <span>&nbsp;Scanner</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/ticket">
+        <i class="fas fa-fw fa-trophy"></i>
+        <span>&nbsp;Ticket</span>
+      </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>&nbsp;Pages</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <h6 class="dropdown-header">Login Screens:</h6>
+        <a class="dropdown-item" routerLink="/login">Login</a>
+        <a class="dropdown-item" routerLink="/register">Register</a>
+        <a class="dropdown-item" routerLink="/reset-password">Forgot Password</a>
+      </div>
+    </li>
+
+  </ul>
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Scanner</li>
+      </ol>
+      <div id='planData'>
+        <div style="max-width: 500px;">
+          <div class="card mtx-10">
+            <div class="card-header">Journey details</div>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input name="journeyFromDate" [(ngModel)]="journeyFromDate" type="text" class="form-control" placeholder="" readonly>
+                    <label for="journeyFromDate">Journey Start</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input name="journeyUpTo" [(ngModel)]="journeyUpTo" type="text" class="form-control" placeholder="" readonly>
+                    <label for="journeyUpTo">Journey Upto</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input name="journeyCruise" [(ngModel)]="journeyCruise" type="text" class="form-control" placeholder="" readonly>
+                    <label for="journeyCruise">Cruise name</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input name="journeyPrice" [(ngModel)]="journeyPrice" type="text" class="form-control" placeholder="" readonly>
+                    <label for="journeyPrice">Package cost</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:500px">
+        <div class="card mtx-10">
+          <div class="card-header">Upload your Document</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <div style="float: left;font-weight:bold" class="col-lg-6 col-sm-6 col-12 mtx-10">Passport / Driving Licence
+                </div>
+                <div style="float: left;" class="input-group col-lg-6 col-sm-6 col-12 mtx-10">
+                  <label class="input-group-btn">
+                    <span class="btn btn-primary" style="border-bottom-right-radius: 0;border-top-right-radius: 0;">
+                      Browse&hellip; <input type="file" (fileselect)="setFilePath($event)" class="passport" (change)="onFileChanged($event)"
+                        style="display: none;">
+                    </span>
+                  </label>
+                  <input type="text" class="form-control" readonly>
+                </div>
+                <div style="clear:both"></div>
+                <div id="progressTop">
+                  <div *ngIf="showProgress">
+                    <div style="float:left" class="col-lg-6 col-sm-6 col-12 mtx-10">Upload Percent:</div>
+                    <div style="float:left" class="input-group col-lg-6 col-sm-6 col-12 mtx-10">
+                      <div class="progress" style="width: 100%;height:28px;">
+                        <div id="progressMeter" style="width: 0%;" class="progress-bar progress-bar-striped active" role="progressbar" attr.aria-valuenow="{{percentDone}}"
+                          attr.aria-valuemin="10" attr.aria-valuemax="100">
+                          {{percentDoneStr}}
+                        </div>
+                      </div>
+                    </div>
+                    <div style="clear:both"></div>
+                  </div>
+                </div>
+                <ng-container *ngIf="uploadSuccess">
+                  <div class="form-group">
+                    <div class="col-12 mtx-10">
+                      <div class="alert alert-success text-center">
+                        <strong>Upload Successful!!</strong>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <div id="previewTop">
+                  <div class="form-group" *ngIf="imgPreview">
+                    <div class="col-12 mtx-10">
+                      <div class="img-container">
+                        <div class="thumbex">
+                          <div class="thumbnail">
+                            <div [ngClass]="{'scanning':scanStatus}">
+                              <img id="uploaderPreview" src="{{base64Encoded}}" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-12 mtx-10">
+                  <button id="uploadButton" style="color: #fff;" class="btn btn-primary btn-block" (click)="onUpload($event)">Upload</button>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="abortProcess">
+                <div class="col-12">
+                  <a routerLink="/scanner"><button id="abortButton" style="color: #fff;" class="btn btn-primary btn-block"
+                      (click)="resetUpload(true)"><i class="fa fa-power-off"></i>Abort</button></a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id='profileTop'>
+        <app-profile *ngIf="loadProfile"></app-profile>
+      </div>
+
+      <br><br>
+
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- /#wrapper -->
+<app-dashboard-foot></app-dashboard-foot>

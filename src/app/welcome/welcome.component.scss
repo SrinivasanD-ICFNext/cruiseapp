@@ -1,0 +1,41 @@
+.card-body {
+    font-weight: bold;
+}
+.button-cruise {
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+    transition: all 0.5s;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .button-cruise span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button-cruise span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button-cruise:hover span {
+    padding-right: 25px;
+  }
+  
+  .button-cruise:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  

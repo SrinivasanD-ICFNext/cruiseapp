@@ -1,0 +1,8 @@
+{
+    "/api": {
+        "target": "http://mylocal.com:80",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": "true"
+    }
+}

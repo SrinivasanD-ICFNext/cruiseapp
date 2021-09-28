@@ -1,0 +1,316 @@
+<app-dashboard-head></app-dashboard-head>
+<div id="wrapper">
+  <!-- Sidebar -->
+  <ul class="sidebar navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/welcome">
+        <i class="fas fa-fw fa-home"></i>
+        <span>&nbsp;Home</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/scanner">
+        <i class="fas fa-fw fa-camera"></i>
+        <span>&nbsp;Scanner</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" routerLink="/ticket">
+          <i class="fas fa-fw fa-trophy"></i>
+          <span>&nbsp;Ticket</span>
+        </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>&nbsp;Pages</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <h6 class="dropdown-header">Login Screens:</h6>
+        <a class="dropdown-item" routerLink="/login">Login</a>
+        <a class="dropdown-item" routerLink="/register">Register</a>
+        <a class="dropdown-item" routerLink="/reset-password">Forgot Password</a>
+      </div>
+    </li>
+    
+  </ul>
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Cruise</a>
+        </li>
+        <li class="breadcrumb-item active">Home</li>
+      </ol>
+      <h2 class='text-white' style="margin:30px 0px">Bookings now open for all cruises, never miss..</h2>
+
+      <div class="row">
+        <div class='col-xl-3 col-sm-6 mb-3'>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input autocomplete="off" name="fromDate" data-field="datetime" type="text" id="fromDate" class="form-control" placeholder=""
+                required="required">
+              <label for="fromDate">Select Start Date</label>
+            </div>
+          </div>
+        </div>
+        <div class='col-xl-3 col-sm-6 mb-3'>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input autocomplete="off" name="toDate" data-field="datetime" type="text" id="toDate" class="form-control" placeholder=""
+                required="required">
+              <label for="toDate">Select End Date</label>
+            </div>
+          </div>
+        </div>
+        <div class='col-xl-3 col-sm-6 mb-3'>
+          <button class="button-cruise" (click)="filterCruise()"><span>Find My Cruise </span></button>
+        </div>
+        <div id="dtBox"></div>
+      </div>
+      <!-- Icon Cards-->
+      <div class="cruiseList" *ngIf="showCruises">
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-anchor fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Iona</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-bell fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Britannia</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-magnet fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Oceana</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-danger o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-music fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Arcadia</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-info o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-recycle fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Baltic</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: #aa66cc">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-link fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">British Isles</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: #FF8800">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-sun fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Canada</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: #007E33">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-at fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Caribbean</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: #0d47a1">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-star fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Ventura</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: #c6ff00">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-smile fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Far East &amp; Asia</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: rgba(233, 30, 99, 0.5)">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa fa-futbol fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Mediterranean</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white o-hidden h-100" style="background-color: #3F729B">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa fa-key fa-spin"></i>
+                </div>
+                <div class="trip-name mr-5 float-left">Scandinavia</div>
+                <span class="trip-price float-right">
+                  &pound;4999
+                </span>
+              </div>
+              <a class="card-footer text-white clearfix small z-1" routerLink="/scanner" (click)=" selectCruise($event, $this)">
+                <span class="float-left">Choose this cruise</span>
+                <span class="float-right">
+                  <i class="fas fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+</div>
+<app-dashboard-foot></app-dashboard-foot>
